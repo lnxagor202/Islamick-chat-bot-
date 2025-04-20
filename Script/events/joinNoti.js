@@ -1,85 +1,93 @@
 module.exports.config = {
-  name: "joinNoti",
-  eventType: ["log:subscribe"],
-  version: "1.0.1",
-  credits: "Islamick Cyber Chat",
-  description: "Notification of bots or people entering groups with random gif/photo/video",
-  dependencies: {
-      "fs-extra": "",
-      "path": "",
-      "pidusage": ""
-  }
+	name: "joinNoti",
+	eventType: ["log:subscribe"],
+	version: "1.0.1",
+	credits: "𝗦𝗵𝗮𝗼𝗻 𝗔𝗵𝗺𝗲𝗱",
+	description: "Notify bot or group member with random gif/photo/video",
+	dependencies: {
+		"fs-extra": "",
+		"path": ""
+	}
 };
 
 module.exports.onLoad = function () {
-  const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
-  const { join } = global.nodemodule["path"];
+    const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
+    const { join } = global.nodemodule["path"];
 
-  const path = join(__dirname, "cache", "joinvideo");
-  if (existsSync(path)) mkdirSync(path, { recursive: true }); 
+	const path = join(__dirname, "cache", "joinmp4");
+	if (existsSync(path)) mkdirSync(path, { recursive: true });	
 
-  const path2 = join(__dirname, "cache", "joinvideo", "randomgif");
-  if (!existsSync(path2)) mkdirSync(path2, { recursive: true });
+	const path2 = join(__dirname, "cache", "joinmp4", "join.mp4");
+    if (!existsSync(path2)) mkdirSync(path2, { recursive: true });
 
-  return;
+    return;
 }
 
 
-module.exports.run = async function({ api, event }) {
-  const { join } = global.nodemodule["path"];
-  const { threadID } = event;
-  if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
-      api.changeNickname(`[ ${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? " " : global.config.BOTNAME}`, threadID, api.getCurrentUserID());
-      const fs = require("fs");
-      return api.sendMessage("", event.threadID, () => api.sendMessage({body: `╭•┄┅═══❁🌺❁═══┅┄•╮\n   আসসালামু আলাইকুম-!!🖤💫\n╰•┄┅═══❁🌺❁═══┅┄•╯
-
-________________________
-𝐓𝐡𝐚𝐧𝐤 𝐲𝐨𝐮 𝐬𝐨 𝐦𝐮𝐜𝐡 𝐟𝐨𝐫 𝐚dd𝐢𝐧𝐠 𝐦𝐞 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐢-𝐠𝐫𝐨𝐮𝐩-🖤🤗\n\n𝐈 𝐰𝐢𝐥𝐥 𝐚𝐥𝐰𝐚𝐲𝐬 𝐬𝐞𝐫𝐯𝐞 𝐲𝐨𝐮 𝐢𝐧𝐚𝐡𝐚𝐥𝐥𝐚𝐡 🌺❤️-!!
-________________________\n\n𝐓𝐨 𝐯𝐢𝐞𝐰 𝐚𝐧𝐲 𝐜𝐨𝐦𝐦𝐚𝐧d
-
-${global.config.PREFIX}Help\n${global.config.PREFIX} Manu
-
-𝐁𝐎𝐓 𝐍𝐀𝐌𝐄 :—͟͟͞͞𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️
-\n\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆`, attachment: fs.createReadStream(__dirname + "/cache/ullash.mp4")} ,threadID));
-  }
+module.exports.run = async function({ api, event, Users, Threads }) {
+    const { join } = global.nodemodule["path"];
+	const { threadID } = event;
+	if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
+		api.changeNickname(`{  ${global.config.PREFIX}  } ${(!global.config.BOTNAME) ? "LN.XAGOR(✷‿✷) 𝗕𝗼𝘁 𝗜𝘀 𝗕𝗮𝗰𝗸👿" : global.config.BOTNAME}`, threadID, api.getCurrentUserID());
+return api.sendMessage(`» ✅𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟𝗟𝗬 𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗘𝗗                                            ╔════   °°𝗟𝗡.𝗫𝗔𝗚𝗢𝗥°°    ════╗          𝐖𝐄𝐋𝐂𝐎𝐌𝐄 TO BOT ENJOY 𝐈𝐓✅            ╚═══   °𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟°    ═══╝                .       .   *  .·       ✧ •  .            • ✦  . ·   •  .      . *                                                      ·     . · *           . ·   .       * ·       . ✧           .  .          .               .       .   *  .·       ✧ •  .            • ✦  . ·   •  .      . *                                                      ·     . · *           . ·   .       * ·       . ✧           .  .          . .       .   *  .·       ✧ •  .            • ✦  . ·   •  .      . *                                                      ·     . · *           . ·   .       * ·       . ✧           .  .          . .       .   *  .·       ✧ •  .            • ✦  . ·   •  .      . *                                                      ·     . · *           . ·   .       * ·       . ✧           .  .          . .       .   *  .·       ✧ •  .            • ✦  . ·   •  .      . *                                                      ·     . · *           . ·   .       * ·       . ✧           .  .          .  .       .   *  .·       ✧ •  .            • ✦  . ·   •  .      . *                                                      ·     . · *           . ·   .       * ·       . ✧           .  .          ★~★~★~★~★~★~★~★~★~★~★ •╔════◄░❀░❉░░►════╗•            ❉░ 👉 USE PERFIX / 👈░❉ •╚════◄░❀░❉░░►════╝• ★~★~★~★~★~★~★~★~★~★~★     »✅╭──《 𝗕𝗢𝗧 𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗘𝗗──⊷
+│ ╭───────✧❁✧───────«
+│ │ Bot Name:- 混合说唱
+│ │ Credit :-LN.XAGOR
+│ │ Prefix:- [/]
+│ │ Owner :LN.XAGOR.
+│ │ LN.XAGOR OFFICIAL:-"https://www.facebook.com/www.xnxx.com20
+│ │ 
+╰──────✧❁✧───────»
+╰───────⊷☑ ❀✿💕🌼💕✿❀                    ✿❀¸¸.•*¯✿¸.• ❀✿💕🌼💕✿❀ ✿❀¸¸.•*¯✿¸.•                  ★ 。☆。★ 。☆。
+-\`, {${global.config.PREFIX}𝗛𝗲𝗹𝗽} to see command`, threadID);
+	}
   else {
-      try {
-          const { createReadStream, existsSync, mkdirSync, readdirSync } = global.nodemodule["fs-extra"];
-          let { threadName, participantIDs } = await api.getThreadInfo(threadID);
+		try {
+			const { createReadStream, existsSync, mkdirSync, readdirSync } = global.nodemodule["fs-extra"];
+        const moment = require("moment-timezone");
+  const time = moment.tz("Asia/Dhaka").format("『DD/MM/YYYY』 ||【hh:mm:ss】"); 
+const hours = moment.tz("Asia/Dhaka").format("hh");
+			let { threadName, participantIDs } = await api.getThreadInfo(threadID);
+			const threadData = global.data.threadData.get(parseInt(threadID)) || {};
+			const path = join(__dirname, "cache", "joinGif");
+			const pathGif = join(path, `${threadID}.gif`);
 
-          const threadData = global.data.threadData.get(parseInt(threadID)) || {};
-          const path = join(__dirname, "cache", "joinvideo");
-          const pathGif = join(path, `${threadID}.video`);
+			var mentions = [], nameArray = [], memLength = [], i = 0;
+			
+			for (id in event.logMessageData.addedParticipants) {
+				const userName = event.logMessageData.addedParticipants[id].fullName;
+				nameArray.push(userName);
+				mentions.push({ tag: userName, id });
+				memLength.push(participantIDs.length - i++);
+			}
+			memLength.sort((a, b) => a - b);
+			
+			(typeof threadData.customJoin == "undefined") ? msg = "╔════•|      ✿      |•════╗\n 💐আ্ঁস্ঁসা্ঁলা্ঁমু্ঁ💚আ্ঁলা্ঁই্ঁকু্ঁম্ঁ💐\n╚════•|      ✿      |•════╝\n\n    ✨🆆🅴🅻🅻 🅲🅾🅼🅴✨\n\n                 ❥𝐍𝐄𝐖~\n\n        ~🇲‌🇪‌🇲‌🇧‌🇪‌🇷‌~\n\n             [   {name} ]\n\n༄✺আ্ঁপ্ঁনা্ঁকে্ঁ আ্ঁমা্ঁদে্ঁর্ঁ✺࿐\n\n{threadName}\n\n 🥰🖤🌸—এ্ঁর্ঁ প্ঁক্ষ্ঁ🍀থে্ঁকে্ঁ🍀—🌸🥀\n\n         🥀_ভা্ঁলো্ঁবা্ঁসা্ঁ_অ্ঁভি্ঁরা্ঁম্ঁ_🥀\n\n༄✺আঁপঁনিঁ এঁইঁ গ্রুঁপেঁর {soThanhVien} নঁং মে্ঁম্বা্ঁরঁ ࿐\n\n╔╦══•  •✠•❀•✠•  •══╦╗\n♥  𝐁𝐎𝐓'𝐬 𝐎𝐖𝐍𝐄𝐑♥\n\n            ☟                     \n\n   🥰𝗟𝗡.𝗫𝗔𝗚𝗢𝗥🤍\n╚╩══•  •✠•❀•✠•  •══╩\n{time}": msg = threadData.customJoin;
+			msg = msg
+                .replace(/\{name}/g, nameArray.join(', '))
+                .replace(/\{type}/g, (memLength.length > 1) ? 'আপনাদের' : '༄✺আ্ঁপ্ঁনা্ঁকে')
+                .replace(/\{soThanhVien}/g, memLength.join(', '))
+                .replace(/\{threadName}/g, threadName)
+                .replace(/\{session}/g, hours <= 10 ? "সকাল" : 
+    hours > 10 && hours <= 12 ? "দুপুর" :
+    hours > 12 && hours <= 18 ? "বিকাল" : "রাত্রি")
+                .replace(/\{time}/g, time);  
 
-          var mentions = [], nameArray = [], memLength = [], i = 0;
 
-          for (id in event.logMessageData.addedParticipants) {
-              const userName = event.logMessageData.addedParticipants[id].fullName;
-              nameArray.push(userName);
-              mentions.push({ tag: userName, id });
-              memLength.push(participantIDs.length - i++);
-          }
-          memLength.sort((a, b) => a - b);
 
-          (typeof threadData.customJoin == "undefined") ? msg = " ╭•┄┅═══❁🌺❁═══┅┄•╮\n   আসসালামু আলাইকুম-!!🖤\n╰•┄┅═══❁🌺❁═══┅┄•╯ \n\n    ✨🆆🅴🅻🅻 🅲🅾🅼🅴✨\n\n                ❥𝐍𝐄𝐖~\n\n        ~🇲‌🇪‌🇲‌🇧‌🇪‌🇷‌~\n\n        [   {name} ]\n\n༆-✿ আপনাকে আমাদের࿐\n\n{threadName}\n\n🌺✨!!—এর পক্ষ-থেকে-!!✨🌺\n\n❤️🫰_ভালোবাস_অভিরাম_🫰❤️\n\n༆-✿আপনি_এই_গ্রুপের {soThanhVien} নং মেম্বার࿐\n\n╭•┄┅═══❁🌺❁═══┅┄•╮\n  🌸   𝐈𝐒𝐋𝐀𝐌𝐈𝐂𝐊 𝐂𝐇𝐀𝐓  🌸\n╰•┄┅═══❁🌺❁═══┅┄•╯" : msg  = threadData.customJoin;
-          msg = msg
-          .replace(/\{name}/g, nameArray.join(', '))
-          .replace(/\{type}/g, (memLength.length > 1) ?  'Friends' : 'Friend')
-          .replace(/\{soThanhVien}/g, memLength.join(', '))
-          .replace(/\{threadName}/g, threadName);
+			if (existsSync(path)) mkdirSync(path, { recursive: true });
 
-          if (existsSync(path)) mkdirSync(path, { recursive: true });
+			const randomPath = readdirSync(join(__dirname, "cache", "joinGif", "randomgif"));
 
-          const randomPath = readdirSync(join(__dirname, "cache", "joinGif", "randomgif"));
+			if (existsSync(pathGif)) formPush = { body: msg, attachment: createReadStream(pathGif), mentions }
+			else if (randomPath.length != 0) {
+				const pathRandom = join(__dirname, "cache", "joinGif", "randomgif", `${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
+				formPush = { body: msg, attachment: createReadStream(pathRandom), mentions }
+			}
+			else formPush = { body: msg, mentions }
 
-          if (existsSync(pathGif)) formPush = { body: msg, attachment: createReadStream(pathvideo), mentions }
-          else if (randomPath.length != 0) {
-              const pathRandom = join(__dirname, "cache", "joinGif", "randomgif", `${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
-              formPush = { body: msg, attachment: createReadStream(pathRandom), mentions }
-          }
-          else formPush = { body: msg, mentions }
-
-          return api.sendMessage(formPush, threadID);
-      } catch (e) { return console.log(e) };
-  }
-            }
+			return api.sendMessage(formPush, threadID);
+      
+		} catch (e) { return console.log(e) };
+	}
+                                }
